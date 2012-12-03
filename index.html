@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>backgammon</title>
+    <script src="./jquery.js"></script>
+
+
+  </head>
+
+  <body style="background:black">
+
+    <h1>TRIANGLES!</h1>
+
+    <div id="red"></div>
+    <div id="green"></div>
+    <div id="blue"></div>
+    <center>
+      <canvas id="myCanvas" width="1000" height="500" style="background:#000"></canvas>
+    </center>
+    <p>this is the bottom</p>
+
+
+    <script>
+
+function rand(val) {
+  return Math.floor(Math.random() * val);
+}
+
+var c = document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+var width = 1000;
+var height = 500;
+var pointHeight = (height / 3);
+
+var red = 0;
+var green = 0;
+var blue = 0;
+
+setInterval(drawStuff, 1);
+
+function drawStuff() {
+  fadeColors();
+  circle();
+  // if (rand(10) == 0)
+  //   triangle();
+}
+
+function circle() {
+  ctx.beginPath();
+  ctx.arc(rand(width), rand(height), rand(80) + 10, 0, 2 * Math.PI, true);
+  ctx.fill();
+}
+
+function triangle() {
+  ctx.beginPath();
+  ctx.moveTo(rand(width),rand(height));
+
+  for (var i = 0; i < 2; i++) {
+    ctx.lineTo(rand(width), rand(height));
+  }
+
+  ctx.closePath();
+  ctx.fill();
+}
+
+redDir = Math.random();
+blueDir = Math.random();
+greenDir = Math.random();
+
+function fadeColors() {
+  red += redDir;
+  if (red > 255) redDir = -Math.random();
+  if (red < 0) redDir = +Math.random();
+
+  green += greenDir;
+  if (green > 255) greenDir = -Math.random();
+  if (green < 0) greenDir = +Math.random();
+
+  blue += blueDir;
+  if (blue > 255) blueDir = -Math.random();
+  if (blue < 0) blueDir = +Math.random();
+
+  ctx.fillStyle="rgb("+Math.floor(red)+","+Math.floor(green)+","+Math.floor(blue)+")";
+}
+
+
+
+</script>
+
+
+
+
+  </body>
+</html>
