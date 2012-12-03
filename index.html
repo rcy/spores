@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>backgammon</title>
+    <title>spores</title>
     <script src="./jquery.js"></script>
 
 
@@ -35,27 +35,38 @@ var red = 0;
 var green = 0;
 var blue = 0;
 
-setInterval(drawStuff, 10);
+setInterval(drawStuff, 50);
 
 var paused = false;
 $('body').click(function() {
-  paused = !paused;
+  togglePause();
 });
 document.addEventListener('touchstart', function(e) {
-  paused = !paused;
+  togglePause();
 }, false);
+
+function togglePause(){
+  paused = !paused;
+  if (paused) {
+    document.title = 'spores: paused';
+  } else {
+    document.title = 'spores';
+  }
+}
 
 function drawStuff() {
   if (!paused) {
-    fadeColors();
-    circle();
-    //square();
+    for (var i = 0; i < 1; i++) {
+      circle();
+      fadeColors();
+    }
   }
 }
 
 function circle() {
+  var max = Math.max(width, height);
   ctx.beginPath();
-  ctx.arc(rand(width), rand(height), rand(60) + 20, 0, 2 * Math.PI, true);
+  ctx.arc(rand(width), rand(height), rand(max / 16) + max/32, 0, 2 * Math.PI, true);
   ctx.fill();
 }
 
@@ -69,18 +80,6 @@ function square() {
   ctx.lineTo(x+l, y+l);
   ctx.lineTo(x, y+l);
   ctx.lineTo(x, y);
-  ctx.closePath();
-  ctx.fill();
-}
-
-function triangle() {
-  ctx.beginPath();
-  ctx.moveTo(rand(width),rand(height));
-
-  for (var i = 0; i < 2; i++) {
-    ctx.lineTo(rand(width), rand(height));
-  }
-
   ctx.closePath();
   ctx.fill();
 }
