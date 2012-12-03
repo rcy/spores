@@ -36,24 +36,46 @@ var red = 0;
 var green = 0;
 var blue = 0;
 
-setInterval(drawStuff, 1);
+var delay = 5; // in milliseconds
+
+setInterval(drawStuff, delay);
 
 function drawStuff() {
   fadeColors();
   circle();
-  // if (rand(10) == 0)
-  //   triangle();
+  if (rand(1000) == 0)
+    triangle();
 }
 
+var x = 100;
+var y = 100;
+var xdir = Math.random();
+var ydir = Math.random();
+var factor = 1;
+
 function circle() {
+  x += xdir * factor;
+  if (x > width)
+    xdir = -Math.random();
+  if (x < 0)
+    xdir = +Math.random();
+
+  y += ydir * factor;
+  if (y > height)
+    ydir = -Math.random();
+  if (y < 0)
+    ydir = +Math.random();
+
   ctx.beginPath();
-  ctx.arc(rand(width), rand(height), rand(80) + 10, 0, 2 * Math.PI, true);
+  //var radius = rand(80) + 10;
+  var radius = red / 2;
+  ctx.arc(x, y, radius, 0, 2 * Math.PI, true);
   ctx.fill();
 }
 
 function triangle() {
   ctx.beginPath();
-  ctx.moveTo(rand(width),rand(height));
+  ctx.moveTo(x, y);
 
   for (var i = 0; i < 2; i++) {
     ctx.lineTo(rand(width), rand(height));
