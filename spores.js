@@ -97,6 +97,6 @@ function fadeColors() {
   if (blue < 0) blueDir = +Math.random();
 
   ctx.lineWidth = 1;
-  ctx.strokeStyle = "rgba("+Math.floor(red*.9)+","+Math.floor(green*.9)+","+Math.floor(blue*.9)+", .2)";
-  ctx.fillStyle="rgba("+Math.floor(red)+","+Math.floor(green)+","+Math.floor(blue)+", .1)";
+  ctx.strokeStyle = "rgba("+Math.floor(red*.9)+","+Math.floor(green*.9)+","+Math.floor(blue*.9)+", .1)";
+  ctx.fillStyle="rgba("+Math.floor(red)+","+Math.floor(green)+","+Math.floor(blue)+", .05)";
 }
